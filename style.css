@@ -256,8 +256,9 @@ a:hover{
   color: var(--text);
 }
 
-.nav-link.is-active{
-  color: var(--accent-highlight);
+.nav-link.is-active,
+.navbar-link.is-active{
+  color: var(--accent-red);
 }
 
 /* mobile nav toggle - see Café Ama section below */
@@ -1513,6 +1514,10 @@ img{
 
 .mobile-menu-link:hover{
   opacity: 0.7;
+}
+
+.mobile-menu-link.is-active{
+  color: var(--accent-red);
 }
 
 

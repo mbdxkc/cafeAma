@@ -121,12 +121,66 @@
   }
 
   /* ---------------------------------------------------------
+     scroll spy for nav highlighting
+     --------------------------------------------------------- */
+  function initScrollSpy() {
+    // Only run on homepage (has section anchors)
+    var sections = document.querySelectorAll('section[id]');
+    if (sections.length === 0) return;
+
+    var navLinks = document.querySelectorAll('.navbar-link[href^="#"], .mobile-menu-link[href^="#"]');
+    var homeLinks = document.querySelectorAll('.navbar-link[href="/"], .mobile-menu-link[href="/"]');
+    if (navLinks.length === 0) return;
+
+    var headerHeight = 100;
+
+    function updateActiveLink() {
+      var scrollPosition = window.scrollY + headerHeight + 50;
+      var currentSection = null;
+
+      sections.forEach(function(section) {
+        var sectionTop = section.offsetTop;
+        var sectionHeight = section.offsetHeight;
+
+        if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+          currentSection = section.getAttribute('id');
+        }
+      });
+
+      // Remove all active states
+      navLinks.forEach(function(link) {
+        link.classList.remove('is-active');
+      });
+      homeLinks.forEach(function(link) {
+        link.classList.remove('is-active');
+      });
+
+      // Add active state to current section link or home if at top
+      if (currentSection) {
+        document.querySelectorAll('.navbar-link[href="#' + currentSection + '"], .mobile-menu-link[href="#' + currentSection + '"]')
+          .forEach(function(link) {
+            link.classList.add('is-active');
+          });
+      } else if (window.scrollY < 200) {
+        // At top of page, highlight home
+        homeLinks.forEach(function(link) {
+          link.classList.add('is-active');
+        });
+      }
+    }
+
+    window.addEventListener('scroll', updateActiveLink, { passive: true });
+    updateActiveLink(); // Run on init
+  }
+
+  /* ---------------------------------------------------------
      initialize
      --------------------------------------------------------- */
   function init() {
     initMobileNav();
     initModals();
     initSmoothScroll();
+    initScrollSpy();
   }
 
   if (document.readyState === 'loading') {
