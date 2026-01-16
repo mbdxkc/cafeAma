@@ -1081,12 +1081,12 @@ img{
   border-radius: var(--radius-sm);
   cursor: pointer;
   text-decoration: none;
-  transition: border-color var(--t-fast) ease, color var(--t-fast) ease;
+  transition: background var(--t-fast) ease, border-color var(--t-fast) ease;
 }
 
 .navbar-cta:hover{
-  border-color: var(--accent-red-light);
-  color: var(--accent-red-light);
+  background: var(--accent-red);
+  border-color: var(--accent-red);
 }
 
 .navbar-right{
