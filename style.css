@@ -326,7 +326,7 @@ img{
 
   color: #fff;
   background: #111;
-  border: 1px solid rgba(255,255,255,.3);
+  border: .5px solid rgba(255,255,255,.3);
 
   box-shadow: var(--shadow-soft);
 
@@ -462,7 +462,7 @@ img{
    ========================================================= */
 .card{
   background: rgba(255,255,255,.05);
-  border: 1px solid rgba(255,255,255,.1);
+  border: .5px solid rgba(255,255,255,.1);
   border-radius: var(--radius-lg);
   padding: 1.5rem;
   transition:
@@ -522,7 +522,7 @@ img{
   color: var(--text);
 
   background: rgba(255,255,255,.05);
-  border: 1px solid rgba(255,255,255,.2);
+  border: .5px solid rgba(255,255,255,.2);
   border-radius: var(--radius-sm);
 
   transition:
@@ -901,7 +901,7 @@ img{
   overflow-y: auto;
 
   background: var(--bg);
-  border: 1px solid rgba(255,255,255,.15);
+  border: .5px solid rgba(255,255,255,.15);
   border-radius: var(--radius-lg);
 
   opacity: 0;
@@ -1077,7 +1077,7 @@ img{
   padding: 0.125rem 0.75rem;
   color: var(--text);
   background: transparent;
-  border: 0.5px solid var(--text);
+  border: 0.2px solid var(--text);
   border-radius: var(--radius-sm);
   cursor: pointer;
   text-decoration: none;
@@ -1203,7 +1203,7 @@ img{
   font-size: 1rem;
   color: var(--text);
   background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.2);
+  border: .5px solid rgba(255,255,255,0.2);
   border-radius: var(--radius-sm);
   transition: border-color var(--t-fast) ease;
 }
@@ -1294,7 +1294,7 @@ img{
   padding: 0.125rem 0.75rem;
   color: var(--text);
   background: transparent;
-  border: 0.5px solid var(--text);
+  border: 0.2px solid var(--text);
   border-radius: var(--radius-sm);
   cursor: pointer;
   text-decoration: none;
@@ -1378,7 +1378,7 @@ img{
   text-decoration: none;
   color: var(--text);
   background: transparent;
-  border: 0.5px solid var(--text);
+  border: 0.2px solid var(--text);
   transition: background var(--t-fast) ease, border-color var(--t-fast) ease;
 }
 
