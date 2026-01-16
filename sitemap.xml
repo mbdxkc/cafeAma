@@ -12,30 +12,78 @@
     <loc>https://cafeama.mediabrilliance.io/contact.html</loc>
     <priority>0.8</priority>
   </url>
+  <!-- Category pages -->
+  <url>
+    <loc>https://cafeama.mediabrilliance.io/cocktails.html</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cafeama.mediabrilliance.io/menu.html</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cafeama.mediabrilliance.io/wines.html</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cafeama.mediabrilliance.io/beers.html</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cafeama.mediabrilliance.io/backbar.html</loc>
+    <priority>0.8</priority>
+  </url>
+  <!-- Cocktail items -->
   <url>
     <loc>https://cafeama.mediabrilliance.io/cocktails/signature-cocktail.html</loc>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
+  <url>
+    <loc>https://cafeama.mediabrilliance.io/cocktails/mezcal-mule.html</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://cafeama.mediabrilliance.io/cocktails/paloma-rosa.html</loc>
+    <priority>0.6</priority>
+  </url>
+  <!-- Menu items -->
   <url>
     <loc>https://cafeama.mediabrilliance.io/menu/featured-dish.html</loc>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
+  <url>
+    <loc>https://cafeama.mediabrilliance.io/menu/empanadas.html</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://cafeama.mediabrilliance.io/menu/ceviche.html</loc>
+    <priority>0.6</priority>
+  </url>
+  <!-- Merch -->
   <url>
     <loc>https://cafeama.mediabrilliance.io/merch/cafe-tee.html</loc>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
+  <!-- Wine items -->
   <url>
     <loc>https://cafeama.mediabrilliance.io/wines/house-red.html</loc>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
+  <url>
+    <loc>https://cafeama.mediabrilliance.io/wines/malbec-reserva.html</loc>
+    <priority>0.6</priority>
+  </url>
+  <!-- Backbar items -->
   <url>
     <loc>https://cafeama.mediabrilliance.io/backbar/premium-spirits.html</loc>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
+  <!-- Beer items -->
   <url>
     <loc>https://cafeama.mediabrilliance.io/beers/craft-selection.html</loc>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
+  <!-- Legal -->
   <url>
     <loc>https://cafeama.mediabrilliance.io/privacy.html</loc>
     <priority>0.3</priority>

@@ -3,14 +3,16 @@
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url('/fonts/caveat-400.ttf') format('truetype');
+  src: url('/fonts/caveat-400.woff2') format('woff2'),
+       url('/fonts/caveat-400.ttf') format('truetype');
 }
 @font-face {
   font-family: 'Caveat';
   font-style: normal;
   font-weight: 700;
   font-display: swap;
-  src: url('/fonts/caveat-700.ttf') format('truetype');
+  src: url('/fonts/caveat-700.woff2') format('woff2'),
+       url('/fonts/caveat-700.ttf') format('truetype');
 }
 @font-face {
   font-family: 'Nunito Sans';
@@ -18,7 +20,8 @@
   font-weight: 400;
   font-stretch: normal;
   font-display: swap;
-  src: url('/fonts/nunito-sans-400.ttf') format('truetype');
+  src: url('/fonts/nunito-sans-400.woff2') format('woff2'),
+       url('/fonts/nunito-sans-400.ttf') format('truetype');
 }
 @font-face {
   font-family: 'Nunito Sans';
@@ -26,5 +29,6 @@
   font-weight: 600;
   font-stretch: normal;
   font-display: swap;
-  src: url('/fonts/nunito-sans-600.ttf') format('truetype');
+  src: url('/fonts/nunito-sans-600.woff2') format('woff2'),
+       url('/fonts/nunito-sans-600.ttf') format('truetype');
 }

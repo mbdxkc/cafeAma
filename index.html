@@ -44,6 +44,43 @@
     <!-- scripts -->
     <script src="/js/page-transition.js" defer></script>
     <script src="/js/utils.js" defer></script>
+
+    <!-- structured data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Restaurant",
+      "name": "Café Ama",
+      "description": "A Latinx bistro specializing in craft cocktails and tapas.",
+      "image": "https://cafeama.mediabrilliance.io/images/cafeAma_logo.webp",
+      "url": "https://cafeama.mediabrilliance.io",
+      "telephone": "816-555-5555",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "201 Main Street",
+        "addressLocality": "Springfield",
+        "addressCountry": "US"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 37.2153,
+        "longitude": -93.2982
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+          "opens": "11:00",
+          "closes": "01:00"
+        }
+      ],
+      "servesCuisine": ["Latin American", "Tapas", "Cocktails"],
+      "priceRange": "$$",
+      "sameAs": [
+        "https://instagram.com/cafe_ama"
+      ]
+    }
+    </script>
   </head>
 
   <body>
@@ -117,10 +154,10 @@
             <img src="/images/cocktail_thumb.webp" alt="Signature cocktail" width="400" height="389" loading="lazy" />
           </div>
           <div class="menu-card-content">
-            <span class="menu-card-label">menu item</span>
-            <p class="menu-card-description">"El diseño no es solo cómo se ve o cómo se siente. El diseño es cómo funciona."</p>
-            <span class="menu-card-attribution">— Steve Jobs</span>
-            <a href="/cocktails/signature-cocktail.html" class="menu-card-button">taste</a>
+            <span class="menu-card-label">la flor de hibisco</span>
+            <p class="menu-card-description">Aged tequila, fresh lime, house-made hibiscus syrup, and a hint of jalapeño for perfect balance.</p>
+            <span class="menu-card-attribution">— $14</span>
+            <a href="/cocktails.html" class="menu-card-button">see all</a>
           </div>
         </article>
       </section>
@@ -131,13 +168,13 @@
 
         <article class="menu-card">
           <div class="menu-card-image">
-            <img src="/images/menu_item_thumb.webp" alt="Menu item" width="116" height="113" loading="lazy" />
+            <img src="/images/menu_item_thumb.webp" alt="Tacos al pastor" width="232" height="226" loading="lazy" />
           </div>
           <div class="menu-card-content">
-            <span class="menu-card-label">menu item</span>
-            <p class="menu-card-description">"El diseño no es solo cómo se ve o cómo se siente. El diseño es cómo funciona."</p>
-            <span class="menu-card-attribution">— Steve Jobs</span>
-            <a href="/menu/featured-dish.html" class="menu-card-button">taste</a>
+            <span class="menu-card-label">tacos al pastor</span>
+            <p class="menu-card-description">Slow-roasted pork with pineapple, cilantro, and onion on house-made corn tortillas.</p>
+            <span class="menu-card-attribution">— $16</span>
+            <a href="/menu.html" class="menu-card-button">see all</a>
           </div>
         </article>
       </section>
@@ -148,13 +185,13 @@
 
         <article class="menu-card">
           <div class="menu-card-image">
-            <img src="/images/merch_thumb.webp" alt="Merchandise" width="400" height="389" loading="lazy" />
+            <img src="/images/merch_thumb.webp" alt="Café Ama signature tee" width="400" height="389" loading="lazy" />
           </div>
           <div class="menu-card-content">
-            <span class="menu-card-label">merch item</span>
-            <p class="menu-card-description">"El diseño no es solo cómo se ve o cómo se siente. El diseño es cómo funciona."</p>
-            <span class="menu-card-attribution">— Steve Jobs</span>
-            <a href="/merch/cafe-tee.html" class="menu-card-button">taste</a>
+            <span class="menu-card-label">signature tee</span>
+            <p class="menu-card-description">Premium soft cotton featuring the iconic Café Ama logo. Wear your love for Latin culture.</p>
+            <span class="menu-card-attribution">— $32</span>
+            <a href="/merch/cafe-tee.html" class="menu-card-button">shop</a>
           </div>
         </article>
       </section>
@@ -165,13 +202,13 @@
 
         <article class="menu-card">
           <div class="menu-card-image">
-            <img src="/images/wines_thumb.webp" alt="Wine selection" width="400" height="389" loading="lazy" />
+            <img src="/images/wines_thumb.webp" alt="House red wine" width="400" height="389" loading="lazy" />
           </div>
           <div class="menu-card-content">
-            <span class="menu-card-label">wine item</span>
-            <p class="menu-card-description">"El diseño no es solo cómo se ve o cómo se siente. El diseño es cómo funciona."</p>
-            <span class="menu-card-attribution">— Steve Jobs</span>
-            <a href="/wines/house-red.html" class="menu-card-button">taste</a>
+            <span class="menu-card-label">house red blend</span>
+            <p class="menu-card-description">Notes of dark cherry, subtle oak, and a smooth finish. Pairs beautifully with our tapas.</p>
+            <span class="menu-card-attribution">— $12 glass</span>
+            <a href="/wines.html" class="menu-card-button">see all</a>
           </div>
         </article>
       </section>
@@ -182,13 +219,13 @@
 
         <article class="menu-card">
           <div class="menu-card-image">
-            <img src="/images/backbar_thumb.webp" alt="Backbar spirits" width="400" height="389" loading="lazy" />
+            <img src="/images/backbar_thumb.webp" alt="Premium spirits" width="400" height="389" loading="lazy" />
           </div>
           <div class="menu-card-content">
-            <span class="menu-card-label">spirits</span>
-            <p class="menu-card-description">"El diseño no es solo cómo se ve o cómo se siente. El diseño es cómo funciona."</p>
-            <span class="menu-card-attribution">— Steve Jobs</span>
-            <a href="/backbar/premium-spirits.html" class="menu-card-button">taste</a>
+            <span class="menu-card-label">premium spirits</span>
+            <p class="menu-card-description">Curated selection of aged tequilas, mezcals, fine rums, and artisanal whiskeys.</p>
+            <span class="menu-card-attribution">— from $10</span>
+            <a href="/backbar.html" class="menu-card-button">see all</a>
           </div>
         </article>
       </section>
@@ -202,10 +239,10 @@
             <img src="/images/beers_thumb.webp" alt="Craft beer selection" width="464" height="452" loading="lazy" />
           </div>
           <div class="menu-card-content">
-            <span class="menu-card-label">craft selection</span>
-            <p class="menu-card-description">"El diseño no es solo cómo se ve o cómo se siente. El diseño es cómo funciona."</p>
-            <span class="menu-card-attribution">— Steve Jobs</span>
-            <a href="/beers/craft-selection.html" class="menu-card-button">taste</a>
+            <span class="menu-card-label">rotating taps</span>
+            <p class="menu-card-description">Local craft brews and Latin American imports. From crisp lagers to bold IPAs.</p>
+            <span class="menu-card-attribution">— $7-12</span>
+            <a href="/beers.html" class="menu-card-button">see all</a>
           </div>
         </article>
       </section>
