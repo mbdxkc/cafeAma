@@ -18,6 +18,7 @@
   /* accents */
   --accent-primary:   #FFFFFF;
   --accent-secondary: rgba(255,255,255,.5);
+  --accent-red:       #722F37;
 
   /* fonts */
   --font-body: "Nunito Sans", system-ui, sans-serif;
@@ -768,6 +769,7 @@ img{
 .text-primary{ color: var(--accent-primary); }
 .text-secondary{ color: var(--accent-secondary); }
 .text-highlight{ color: var(--accent-highlight); }
+.text-red{ color: var(--accent-red); }
 
 .leading-none{ line-height: 1; }
 .leading-tight{ line-height: 1.25; }
