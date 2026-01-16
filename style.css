@@ -1,6 +1,6 @@
 /* =========================================================
    base stylesheet
-   design. code. clarity.
+   cafeAma case study
    ========================================================= */
 
 
@@ -15,12 +15,12 @@
   --muted: rgba(255,255,255,.7);
 
   /* accents */
-  --accent-primary:   #008DDA;
-  --accent-secondary: #FF2DF1;
-  --accent-highlight: #FFFF00;
+  --accent-primary:   #b52525;s
+  --accent-secondary: #5A1F1F;
+  --accent-highlight: #b99393;
 
   /* layout */
-  --container: 1200px;
+  --container: 1200px;s
   --header-h:  48px;
 
   /* shape */
