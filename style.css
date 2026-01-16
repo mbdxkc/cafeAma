@@ -19,6 +19,7 @@
   --accent-primary:   #FFFFFF;
   --accent-secondary: rgba(255,255,255,.5);
   --accent-red:       #722F37;
+  --accent-red-light: #A64550;
 
   /* fonts */
   --font-body: "Nunito Sans", system-ui, sans-serif;
@@ -165,13 +166,23 @@ small{
 }
 
 a{
-  color: var(--accent-highlight);
+  color: var(--accent-red);
   text-decoration: none;
   transition: color var(--t-fast) ease;
 }
 
 a:hover{
-  color: var(--accent-secondary);
+  color: var(--accent-red-light);
+}
+
+/* nav links keep their own styling */
+.navbar-link,
+.navbar-tagline,
+.navbar-cta,
+.mobile-menu-link,
+.nav-link,
+.footer-item a{
+  color: var(--text);
 }
 
 
@@ -771,6 +782,7 @@ img{
 .text-secondary{ color: var(--accent-secondary); }
 .text-highlight{ color: var(--accent-highlight); }
 .text-red{ color: var(--accent-red); }
+.text-red-light{ color: var(--accent-red-light); }
 
 .leading-none{ line-height: 1; }
 .leading-tight{ line-height: 1.25; }
