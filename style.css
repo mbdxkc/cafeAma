@@ -10,22 +10,27 @@
    ========================================================= */
 :root{
   /* colors */
-  --bg:    rgba(0,0,0,.9);
-  --text:  rgba(255,255,255,.87);
-  --muted: rgba(255,255,255,.7);
+  --bg:      #000000;
+  --bg-dark: rgba(0,0,0,.6);
+  --text:    #FFFFFF;
+  --muted:   rgba(255,255,255,.7);
 
   /* accents */
-  --accent-primary:   #b52525;s
-  --accent-secondary: #5A1F1F;
-  --accent-highlight: #b99393;
+  --accent-primary:   #FFFFFF;
+  --accent-secondary: rgba(255,255,255,.5);
+
+  /* fonts */
+  --font-body: "Nunito Sans", system-ui, sans-serif;
+  --font-script: "Caveat", cursive;
 
   /* layout */
-  --container: 1200px;s
-  --header-h:  48px;
+  --container: 1200px;
+  --header-h:  80px;
 
   /* shape */
-  --radius-sm: 12px;
-  --radius-lg: 20px;
+  --radius-sm: 8px;
+  --radius-lg: 16px;
+  --radius-pill: 999px;
 
   /* shadow */
   --shadow-soft: 0 8px 20px rgba(0,0,0,.35);
@@ -65,7 +70,7 @@ body{
   background: var(--bg);
   color: var(--text);
 
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: var(--font-body);
 }
 
 
@@ -254,60 +259,9 @@ a:hover{
   color: var(--accent-highlight);
 }
 
-/* mobile nav toggle */
-.nav-toggle{
-  display: none;
-  appearance: none;
-  background: transparent;
-  border: none;
-  padding: .5rem;
-  cursor: pointer;
-}
+/* mobile nav toggle - see Café Ama section below */
 
-.nav-toggle span{
-  display: block;
-  width: 20px;
-  height: 2px;
-  background: var(--text);
-  margin: 4px 0;
-  transition:
-    transform var(--t-fast) ease,
-    opacity var(--t-fast) ease;
-}
-
-/* mobile menu panel */
-.mobile-menu{
-  display: none;
-  position: fixed;
-  top: var(--header-h);
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 999;
-
-  background: var(--bg);
-  padding: 2rem 1rem;
-
-  opacity: 0;
-  transform: translateY(-10px);
-  pointer-events: none;
-  transition:
-    opacity var(--t-base) ease,
-    transform var(--t-base) ease;
-}
-
-.mobile-menu.is-active{
-  opacity: 1;
-  transform: translateY(0);
-  pointer-events: auto;
-}
-
-.mobile-menu .nav-link{
-  display: block;
-  padding: .75rem 0;
-  font-size: 1.125rem;
-  border-bottom: 1px solid rgba(255,255,255,.1);
-}
+/* mobile menu panel - see Café Ama section below */
 
 .nav-left,
 .nav-center,
@@ -1002,18 +956,7 @@ img{
     padding: 4rem 0;
   }
 
-  /* mobile nav */
-  .nav .pages{
-    display: none;
-  }
-
-  .nav-toggle{
-    display: block;
-  }
-
-  .mobile-menu{
-    display: block;
-  }
+  /* mobile nav - see Café Ama section below */
 
   .hide-md{ display: none; }
   .show-md{ display: block; }
@@ -1058,6 +1001,533 @@ img{
 
   .container{
     max-width: 100%;
+  }
+}
+
+
+/* =========================================================
+   25) Café Ama - Navbar
+   ========================================================= */
+.site-header{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 1rem 2rem;
+  background: transparent;
+  border-bottom: none;
+}
+
+.navbar{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0.75rem 2rem;
+  background: var(--bg-dark);
+  border-radius: 0;
+}
+
+.navbar-tagline{
+  font-family: var(--font-script);
+  font-size: 1.75rem;
+  color: var(--text);
+  white-space: nowrap;
+}
+
+.navbar-nav{
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+.navbar-link{
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  font-weight: 400;
+  color: var(--text);
+  text-decoration: none;
+  transition: opacity var(--t-fast) ease;
+}
+
+.navbar-link:hover{
+  opacity: 0.7;
+}
+
+.navbar-cta{
+  font-family: var(--font-script);
+  font-size: 1.25rem;
+  padding: 0.5rem 1.25rem;
+  color: var(--bg-dark);
+  background: var(--text);
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  text-decoration: none;
+  transition: opacity var(--t-fast) ease;
+}
+
+.navbar-cta:hover{
+  opacity: 0.9;
+}
+
+.navbar-right{
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.nav-toggle{
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 32px;
+  height: 32px;
+  padding: 4px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.nav-toggle span{
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: var(--text);
+  border-radius: 1px;
+  transition: transform var(--t-fast) ease, opacity var(--t-fast) ease;
+}
+
+.nav-toggle[aria-expanded="true"] span:nth-child(1){
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.nav-toggle[aria-expanded="true"] span:nth-child(2){
+  opacity: 0;
+}
+
+.nav-toggle[aria-expanded="true"] span:nth-child(3){
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+
+/* =========================================================
+   26) Café Ama - Hero section
+   ========================================================= */
+.hero{
+  min-height: 100vh;
+  padding: calc(var(--header-h) + 4rem) 2rem 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.hero-image{
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.hero-image img{
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.hero-subtitle{
+  font-family: var(--font-script);
+  font-size: 1.5rem;
+  color: var(--muted);
+  margin-top: 2rem;
+}
+
+.tagline-large{
+  font-family: var(--font-script);
+  font-size: 2rem;
+  color: var(--text);
+  margin: 0;
+}
+
+
+/* =========================================================
+   27) Café Ama - Section titles
+   ========================================================= */
+.section-header{
+  font-family: var(--font-script);
+  font-size: 2rem;
+  font-weight: 400;
+  color: var(--text);
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+
+/* =========================================================
+   28) Café Ama - Menu card
+   ========================================================= */
+.menu-card{
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.menu-card-image{
+  flex-shrink: 0;
+  width: 140px;
+  height: 140px;
+  overflow: hidden;
+}
+
+.menu-card-image img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.menu-card-content{
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-card-label{
+  font-family: var(--font-script);
+  font-size: 1rem;
+  color: var(--muted);
+  margin-bottom: 0.5rem;
+}
+
+.menu-card-description{
+  font-size: 0.875rem;
+  font-style: italic;
+  color: var(--text);
+  line-height: 1.6;
+  margin-bottom: 0.5rem;
+}
+
+.menu-card-attribution{
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin-bottom: 1rem;
+}
+
+.menu-card-button{
+  align-self: flex-start;
+  font-family: var(--font-script);
+  font-size: 1rem;
+  padding: 0.375rem 0.75rem;
+  color: var(--bg-dark);
+  background: var(--text);
+  border: 1px solid var(--text);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  text-decoration: none;
+  transition: opacity var(--t-fast) ease;
+}
+
+.menu-card-button:hover{
+  opacity: 0.9;
+}
+
+
+/* =========================================================
+   29) Café Ama - Price list block
+   ========================================================= */
+.price-list{
+  margin-bottom: 2rem;
+}
+
+.price-list-item{
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid rgba(255,255,255,.1);
+}
+
+.price-list-item:last-child{
+  border-bottom: none;
+}
+
+.price-list-description{
+  font-size: 0.875rem;
+  color: var(--text);
+  flex: 1;
+  padding-right: 1rem;
+}
+
+.price-list-price{
+  font-size: 0.875rem;
+  color: var(--text);
+  white-space: nowrap;
+}
+
+
+/* =========================================================
+   30) Café Ama - Category tags
+   ========================================================= */
+.category-tags{
+  font-family: var(--font-script);
+  font-size: 1.5rem;
+  color: var(--text);
+  text-align: center;
+  line-height: 2;
+  padding: 2rem 1rem;
+}
+
+.category-tags .icon{
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  vertical-align: middle;
+  margin: 0 0.25rem;
+  opacity: 0.8;
+}
+
+
+/* =========================================================
+   31) Café Ama - Buttons
+   ========================================================= */
+.btn{
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-script);
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  text-decoration: none;
+  transition: opacity var(--t-fast) ease;
+}
+
+.btn:hover{
+  opacity: 0.8;
+}
+
+.btn-primary{
+  color: var(--bg-dark);
+  background: var(--text);
+  border: 1px solid var(--text);
+}
+
+.btn-outline{
+  color: var(--text);
+  background: transparent;
+  border: 1px solid rgba(255,255,255,.5);
+}
+
+.btn-icon{
+  width: 1em;
+  height: 1em;
+}
+
+
+/* =========================================================
+   32) Café Ama - Footer
+   ========================================================= */
+.site-footer{
+  padding: 4rem 2rem;
+}
+
+.footer-grid{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  max-width: var(--container);
+  margin: 0 auto;
+  text-align: center;
+}
+
+.footer-item{
+  font-family: var(--font-script);
+  font-size: 1.25rem;
+  color: var(--text);
+}
+
+.footer-item a{
+  color: var(--text);
+  text-decoration: none;
+}
+
+.footer-item a:hover{
+  opacity: 0.7;
+}
+
+@media (max-width: 768px){
+  .footer-grid{
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px){
+  .footer-grid{
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* =========================================================
+   33) Café Ama - Content sections
+   ========================================================= */
+.cafe-section{
+  padding: 4rem 2rem;
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.cafe-section .menu-card{
+  text-align: left;
+}
+
+
+/* =========================================================
+   34) Café Ama - Quote block
+   ========================================================= */
+.quote-block{
+  text-align: center;
+  padding: 2rem;
+}
+
+.quote-block-text{
+  font-size: 1rem;
+  font-style: italic;
+  color: var(--text);
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.quote-block-attribution{
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+
+
+/* =========================================================
+   35) Café Ama - Large image block
+   ========================================================= */
+.image-block{
+  width: 100%;
+  margin: 2rem 0;
+}
+
+.image-block img{
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+
+/* =========================================================
+   36) Café Ama - Mobile menu
+   ========================================================= */
+.mobile-menu{
+  position: fixed;
+  top: var(--header-h);
+  left: 0;
+  right: 0;
+  z-index: 999;
+  background: var(--bg-dark);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  opacity: 0;
+  transform: translateY(-1rem);
+  pointer-events: none;
+  transition: opacity var(--t-base) ease, transform var(--t-base) ease;
+}
+
+.mobile-menu.is-active{
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.mobile-menu-link{
+  font-family: var(--font-script);
+  font-size: 1.5rem;
+  color: var(--text);
+  text-decoration: none;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(255,255,255,.1);
+}
+
+.mobile-menu-link:hover{
+  opacity: 0.7;
+}
+
+
+/* =========================================================
+   37) Café Ama - Mobile responsive
+   ========================================================= */
+@media (max-width: 768px){
+  .navbar{
+    padding: 0.5rem 1rem;
+  }
+
+  .navbar-tagline{
+    font-size: 1.25rem;
+  }
+
+  .navbar-nav{
+    display: none;
+  }
+
+  .navbar-cta{
+    font-size: 1rem;
+    padding: 0.375rem 0.875rem;
+  }
+
+  .nav-toggle{
+    display: flex;
+  }
+
+  .hero{
+    padding-top: calc(var(--header-h) + 1rem);
+  }
+
+  .hero-image{
+    width: 90%;
+    max-width: 400px;
+  }
+
+  .menu-card{
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .menu-card-image{
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1;
+    max-width: 200px;
+  }
+
+  .menu-card-content{
+    align-items: center;
+    text-align: center;
+  }
+
+  .menu-card-button{
+    align-self: center;
+  }
+}
+
+@media (max-width: 480px){
+  .navbar-tagline{
+    font-size: 1rem;
+  }
+
+  .navbar-cta{
+    font-size: 0.875rem;
+    padding: 0.25rem 0.625rem;
   }
 }
 
