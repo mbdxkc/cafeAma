@@ -1,0 +1,406 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!--
+    =========================================================
+    SNIPCART SETUP FOR MERCH + GIFT CARDS
+    =========================================================
+
+    SETUP STEPS:
+    1. Sign up at https://snipcart.com
+    2. Get your public API key from Dashboard > API Keys
+    3. Replace YOUR_PUBLIC_API_KEY below with your actual key
+    4. Add the <link> and <script> tags to your site's <head>
+    5. Add the hidden <div id="snipcart"> before </body>
+    6. Convert your buy buttons using the data-item-* attributes
+
+    PRICING:
+    - Free under $500/month in sales (2% transaction fee)
+    - $20/month + 2% over $500/month
+    - Test mode available for development
+
+    =========================================================
+    -->
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Snipcart Merch Setup | Café Ama</title>
+
+    <!-- Your existing styles -->
+    <link rel="stylesheet" href="/fonts/fonts.css" />
+    <link rel="stylesheet" href="/style.min.css" />
+
+    <!-- =====================================================
+         SNIPCART: Add these to your <head>
+         ===================================================== -->
+    <link rel="preconnect" href="https://app.snipcart.com" />
+    <link rel="preconnect" href="https://cdn.snipcart.com" />
+    <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.6.1/default/snipcart.css" />
+
+    <style>
+      /* Custom Snipcart theme overrides to match Café Ama branding */
+      :root {
+        --snipcart-primary: #c73e3a;
+        --snipcart-secondary: #1a1a1a;
+        --snipcart-background: #0d0d0d;
+        --snipcart-text: #f5f5f5;
+      }
+
+      /* Example product grid for this demo */
+      .product-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+        padding: 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .product-card {
+        background: #1a1a1a;
+        border-radius: 8px;
+        overflow: hidden;
+        border: 1px solid #333;
+      }
+
+      .product-card img {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+      }
+
+      .product-info {
+        padding: 1.5rem;
+      }
+
+      .product-name {
+        font-family: var(--font-script, 'Caveat', cursive);
+        font-size: 1.5rem;
+        color: #f5f5f5;
+        margin-bottom: 0.5rem;
+      }
+
+      .product-price {
+        color: #c73e3a;
+        font-size: 1.25rem;
+        margin-bottom: 1rem;
+      }
+
+      .product-description {
+        color: #999;
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+      }
+
+      /* Snipcart buy button styling */
+      .snipcart-add-item {
+        background: #c73e3a;
+        color: #fff;
+        border: none;
+        padding: 0.75rem 1.5rem;
+        font-family: var(--font-script, 'Caveat', cursive);
+        font-size: 1.1rem;
+        cursor: pointer;
+        border-radius: 4px;
+        transition: background 0.2s;
+        width: 100%;
+      }
+
+      .snipcart-add-item:hover {
+        background: #a83330;
+      }
+
+      /* Cart button in header */
+      .cart-button {
+        position: fixed;
+        top: 1rem;
+        right: 1rem;
+        background: #c73e3a;
+        color: #fff;
+        border: none;
+        padding: 0.75rem 1.25rem;
+        border-radius: 4px;
+        cursor: pointer;
+        font-family: var(--font-script, 'Caveat', cursive);
+        font-size: 1.1rem;
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .cart-count {
+        background: #fff;
+        color: #c73e3a;
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.8rem;
+        font-weight: bold;
+      }
+
+      .page-header {
+        text-align: center;
+        padding: 4rem 1rem 2rem;
+      }
+
+      .page-header h1 {
+        font-family: var(--font-script, 'Caveat', cursive);
+        font-size: 3rem;
+        color: #f5f5f5;
+      }
+
+      body {
+        background: #0d0d0d;
+        color: #f5f5f5;
+        font-family: system-ui, sans-serif;
+        margin: 0;
+        min-height: 100vh;
+      }
+
+      .section-divider {
+        text-align: center;
+        padding: 2rem;
+        border-top: 1px solid #333;
+        margin-top: 2rem;
+      }
+
+      .section-divider h2 {
+        font-family: var(--font-script, 'Caveat', cursive);
+        font-size: 2rem;
+        color: #c73e3a;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- =====================================================
+         CART BUTTON (shows item count)
+         ===================================================== -->
+    <button class="cart-button snipcart-checkout">
+      cart
+      <span class="cart-count snipcart-items-count">0</span>
+    </button>
+
+    <div class="page-header">
+      <h1>Café Ama Merch</h1>
+      <p>Support local. Wear your love.</p>
+    </div>
+
+    <!-- =====================================================
+         MERCH PRODUCTS
+         ===================================================== -->
+    <div class="product-grid">
+
+      <!-- PRODUCT 1: Signature Tee -->
+      <div class="product-card">
+        <img src="/images/merch.webp" alt="Café Ama Signature Tee" />
+        <div class="product-info">
+          <h3 class="product-name">Signature Tee</h3>
+          <p class="product-price">$32</p>
+          <p class="product-description">Premium soft cotton featuring the iconic Café Ama logo.</p>
+
+          <!-- SNIPCART BUY BUTTON with size options -->
+          <button class="snipcart-add-item"
+            data-item-id="cafe-tee"
+            data-item-name="Café Ama Signature Tee"
+            data-item-price="32.00"
+            data-item-url="/merch/cafe-tee.html"
+            data-item-description="Premium cotton tee with Café Ama logo"
+            data-item-image="/images/merch.webp"
+            data-item-custom1-name="Size"
+            data-item-custom1-options="S|M|L|XL|XXL"
+            data-item-custom1-required="true">
+            add to cart
+          </button>
+        </div>
+      </div>
+
+      <!-- PRODUCT 2: Coffee Mug -->
+      <div class="product-card">
+        <img src="/images/merch.webp" alt="Café Ama Mug" />
+        <div class="product-info">
+          <h3 class="product-name">Ceramic Mug</h3>
+          <p class="product-price">$18</p>
+          <p class="product-description">12oz ceramic mug. Dishwasher and microwave safe.</p>
+
+          <button class="snipcart-add-item"
+            data-item-id="cafe-mug"
+            data-item-name="Café Ama Ceramic Mug"
+            data-item-price="18.00"
+            data-item-url="/merch/cafe-mug.html"
+            data-item-description="12oz ceramic mug with logo"
+            data-item-image="/images/merch.webp">
+            add to cart
+          </button>
+        </div>
+      </div>
+
+      <!-- PRODUCT 3: Hat -->
+      <div class="product-card">
+        <img src="/images/merch.webp" alt="Café Ama Hat" />
+        <div class="product-info">
+          <h3 class="product-name">Dad Hat</h3>
+          <p class="product-price">$28</p>
+          <p class="product-description">Embroidered logo on adjustable cotton twill.</p>
+
+          <button class="snipcart-add-item"
+            data-item-id="cafe-hat"
+            data-item-name="Café Ama Dad Hat"
+            data-item-price="28.00"
+            data-item-url="/merch/cafe-hat.html"
+            data-item-description="Adjustable cotton twill hat"
+            data-item-image="/images/merch.webp"
+            data-item-custom1-name="Color"
+            data-item-custom1-options="Black|Cream|Forest Green"
+            data-item-custom1-required="true">
+            add to cart
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- =====================================================
+         GIFT CARDS SECTION
+         ===================================================== -->
+    <div class="section-divider">
+      <h2>Gift Cards</h2>
+      <p>Share the love with a Café Ama gift card</p>
+    </div>
+
+    <div class="product-grid">
+
+      <!-- GIFT CARD: $25 -->
+      <div class="product-card">
+        <img src="/images/cafeAma_logo.webp" alt="$25 Gift Card" />
+        <div class="product-info">
+          <h3 class="product-name">$25 Gift Card</h3>
+          <p class="product-price">$25</p>
+          <p class="product-description">Digital gift card delivered via email.</p>
+
+          <!-- Digital product: no shipping required -->
+          <button class="snipcart-add-item"
+            data-item-id="gift-card-25"
+            data-item-name="Café Ama Gift Card - $25"
+            data-item-price="25.00"
+            data-item-url="/merch/gift-cards.html"
+            data-item-description="Digital gift card"
+            data-item-image="/images/cafeAma_logo.webp"
+            data-item-file-guid="YOUR_FILE_GUID"
+            data-item-shippable="false"
+            data-item-custom1-name="Recipient Email"
+            data-item-custom1-required="true"
+            data-item-custom2-name="Gift Message"
+            data-item-custom2-required="false">
+            buy gift card
+          </button>
+        </div>
+      </div>
+
+      <!-- GIFT CARD: $50 -->
+      <div class="product-card">
+        <img src="/images/cafeAma_logo.webp" alt="$50 Gift Card" />
+        <div class="product-info">
+          <h3 class="product-name">$50 Gift Card</h3>
+          <p class="product-price">$50</p>
+          <p class="product-description">Digital gift card delivered via email.</p>
+
+          <button class="snipcart-add-item"
+            data-item-id="gift-card-50"
+            data-item-name="Café Ama Gift Card - $50"
+            data-item-price="50.00"
+            data-item-url="/merch/gift-cards.html"
+            data-item-description="Digital gift card"
+            data-item-image="/images/cafeAma_logo.webp"
+            data-item-shippable="false"
+            data-item-custom1-name="Recipient Email"
+            data-item-custom1-required="true"
+            data-item-custom2-name="Gift Message"
+            data-item-custom2-required="false">
+            buy gift card
+          </button>
+        </div>
+      </div>
+
+      <!-- GIFT CARD: $100 -->
+      <div class="product-card">
+        <img src="/images/cafeAma_logo.webp" alt="$100 Gift Card" />
+        <div class="product-info">
+          <h3 class="product-name">$100 Gift Card</h3>
+          <p class="product-price">$100</p>
+          <p class="product-description">Digital gift card delivered via email.</p>
+
+          <button class="snipcart-add-item"
+            data-item-id="gift-card-100"
+            data-item-name="Café Ama Gift Card - $100"
+            data-item-price="100.00"
+            data-item-url="/merch/gift-cards.html"
+            data-item-description="Digital gift card"
+            data-item-image="/images/cafeAma_logo.webp"
+            data-item-shippable="false"
+            data-item-custom1-name="Recipient Email"
+            data-item-custom1-required="true"
+            data-item-custom2-name="Gift Message"
+            data-item-custom2-required="false">
+            buy gift card
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- =====================================================
+         SNIPCART: Required hidden container (place before </body>)
+         ===================================================== -->
+    <div id="snipcart"
+         data-api-key="YOUR_PUBLIC_API_KEY"
+         data-config-modal-style="side"
+         hidden>
+      <!--
+        CONFIGURATION OPTIONS:
+
+        data-api-key          : Your public API key from Snipcart dashboard
+        data-config-modal-style: "side" (slides in) or "center" (modal popup)
+        data-currency         : "usd" (default), "eur", "gbp", etc.
+        data-config-add-product-behavior: "go-to-checkout" or "none"
+
+        For testing, use your TEST API key (starts with "st_")
+        For production, use your LIVE API key (starts with "sl_")
+      -->
+    </div>
+
+    <!-- SNIPCART: Main script (load at end of body) -->
+    <script async src="https://cdn.snipcart.com/themes/v3.6.1/default/snipcart.js"></script>
+
+    <!--
+    =========================================================
+    INTEGRATION CHECKLIST:
+    =========================================================
+
+    [ ] 1. Create Snipcart account at https://snipcart.com
+    [ ] 2. Add your domain to allowed domains in dashboard
+    [ ] 3. Replace YOUR_PUBLIC_API_KEY with your test key
+    [ ] 4. Set up shipping rates in Snipcart dashboard
+    [ ] 5. Connect payment gateway (Stripe recommended)
+    [ ] 6. Test checkout flow with test credit card
+    [ ] 7. Switch to live API key when ready
+
+    PRODUCT VALIDATION:
+    - Snipcart validates products by fetching data-item-url
+    - Each product URL must return HTML with matching data attributes
+    - This prevents price tampering
+
+    WEBHOOKS (optional):
+    - Set up webhooks for order notifications
+    - Integrate with inventory management
+    - Send to email marketing tools
+
+    =========================================================
+    -->
+
+  </body>
+</html>

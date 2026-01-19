@@ -1,0 +1,453 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!--
+    =========================================================
+    SQUARE ONLINE ORDERING SETUP FOR FOOD
+    =========================================================
+
+    SETUP STEPS:
+    1. Sign up at https://squareup.com
+    2. Enable Square Online in your dashboard
+    3. Set up your menu in Square Dashboard > Items
+    4. Configure pickup/delivery in Online settings
+    5. Get your location ID and embed code
+    6. Add the embed widget to your site
+
+    PRICING:
+    - Free to set up
+    - 2.9% + 30¢ per online transaction
+    - No monthly fees for basic plan
+
+    ALTERNATIVES:
+    - Toast (more restaurant-focused)
+    - ChowNow (commission-free option)
+    - BentoBox (upscale restaurant focus)
+
+    =========================================================
+    -->
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Square Food Ordering Setup | Café Ama</title>
+
+    <!-- Your existing styles -->
+    <link rel="stylesheet" href="/fonts/fonts.css" />
+    <link rel="stylesheet" href="/style.min.css" />
+
+    <style>
+      body {
+        background: #0d0d0d;
+        color: #f5f5f5;
+        font-family: system-ui, sans-serif;
+        margin: 0;
+        min-height: 100vh;
+      }
+
+      .page-header {
+        text-align: center;
+        padding: 4rem 1rem 2rem;
+      }
+
+      .page-header h1 {
+        font-family: var(--font-script, 'Caveat', cursive);
+        font-size: 3rem;
+        color: #f5f5f5;
+        margin-bottom: 0.5rem;
+      }
+
+      .page-header p {
+        color: #999;
+      }
+
+      /* Order options */
+      .order-options {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        flex-wrap: wrap;
+        padding: 2rem;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .order-option {
+        background: #1a1a1a;
+        border: 2px solid #333;
+        border-radius: 12px;
+        padding: 2rem;
+        text-align: center;
+        flex: 1;
+        min-width: 250px;
+        max-width: 350px;
+        transition: border-color 0.2s, transform 0.2s;
+      }
+
+      .order-option:hover {
+        border-color: #c73e3a;
+        transform: translateY(-4px);
+      }
+
+      .order-option h2 {
+        font-family: var(--font-script, 'Caveat', cursive);
+        font-size: 2rem;
+        color: #f5f5f5;
+        margin-bottom: 0.5rem;
+      }
+
+      .order-option p {
+        color: #999;
+        margin-bottom: 1.5rem;
+      }
+
+      .order-option .time {
+        color: #c73e3a;
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+      }
+
+      /* Square order button styling */
+      .order-button {
+        display: inline-block;
+        background: #c73e3a;
+        color: #fff;
+        text-decoration: none;
+        padding: 1rem 2rem;
+        border-radius: 6px;
+        font-family: var(--font-script, 'Caveat', cursive);
+        font-size: 1.25rem;
+        transition: background 0.2s;
+        border: none;
+        cursor: pointer;
+      }
+
+      .order-button:hover {
+        background: #a83330;
+      }
+
+      /* Embedded menu section */
+      .menu-section {
+        max-width: 1200px;
+        margin: 3rem auto;
+        padding: 2rem;
+      }
+
+      .menu-section h2 {
+        font-family: var(--font-script, 'Caveat', cursive);
+        font-size: 2.5rem;
+        color: #c73e3a;
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+
+      /* Square embed container */
+      .square-embed-container {
+        background: #1a1a1a;
+        border-radius: 12px;
+        padding: 2rem;
+        min-height: 400px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid #333;
+      }
+
+      .square-embed-container .placeholder {
+        text-align: center;
+        color: #666;
+      }
+
+      .square-embed-container .placeholder code {
+        display: block;
+        background: #0d0d0d;
+        padding: 1rem;
+        border-radius: 6px;
+        margin-top: 1rem;
+        font-size: 0.85rem;
+        text-align: left;
+        overflow-x: auto;
+      }
+
+      /* Hours banner */
+      .hours-banner {
+        background: #1a1a1a;
+        border-top: 1px solid #333;
+        border-bottom: 1px solid #333;
+        padding: 1rem;
+        text-align: center;
+      }
+
+      .hours-banner p {
+        margin: 0;
+        color: #999;
+      }
+
+      .hours-banner strong {
+        color: #f5f5f5;
+      }
+
+      /* Info cards */
+      .info-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.5rem;
+        max-width: 1000px;
+        margin: 3rem auto;
+        padding: 0 2rem;
+      }
+
+      .info-card {
+        background: #1a1a1a;
+        border: 1px solid #333;
+        border-radius: 8px;
+        padding: 1.5rem;
+      }
+
+      .info-card h3 {
+        font-family: var(--font-script, 'Caveat', cursive);
+        font-size: 1.5rem;
+        color: #c73e3a;
+        margin-bottom: 0.5rem;
+      }
+
+      .info-card p {
+        color: #999;
+        font-size: 0.95rem;
+        line-height: 1.6;
+      }
+
+      /* Alternative: Direct link buttons */
+      .direct-order-section {
+        text-align: center;
+        padding: 3rem 2rem;
+        background: linear-gradient(180deg, transparent, rgba(199, 62, 58, 0.1));
+      }
+
+      .direct-order-section h2 {
+        font-family: var(--font-script, 'Caveat', cursive);
+        font-size: 2rem;
+        color: #f5f5f5;
+        margin-bottom: 1rem;
+      }
+
+      .order-links {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+
+      .order-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: transparent;
+        border: 2px solid #c73e3a;
+        color: #c73e3a;
+        text-decoration: none;
+        padding: 0.75rem 1.5rem;
+        border-radius: 6px;
+        font-family: var(--font-script, 'Caveat', cursive);
+        font-size: 1.1rem;
+        transition: all 0.2s;
+      }
+
+      .order-link:hover {
+        background: #c73e3a;
+        color: #fff;
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <div class="page-header">
+      <h1>Order Online</h1>
+      <p>Fresh Latin-inspired dishes, ready when you are</p>
+    </div>
+
+    <div class="hours-banner">
+      <p>Kitchen hours: <strong>Tue-Sun 11am-10pm</strong> | Online ordering closes 30 min before kitchen</p>
+    </div>
+
+    <!-- =====================================================
+         ORDER TYPE SELECTION
+         ===================================================== -->
+    <div class="order-options">
+
+      <div class="order-option">
+        <h2>Pickup</h2>
+        <p>Order ahead and skip the wait</p>
+        <p class="time">Ready in 15-25 minutes</p>
+
+        <!--
+          OPTION 1: Direct link to Square Online ordering page
+          Replace YOUR_SQUARE_SITE_URL with your actual Square Online URL
+        -->
+        <a href="https://YOUR_SQUARE_SITE_URL/s/order?location=YOUR_LOCATION_ID&fulfillment=pickup"
+           class="order-button"
+           target="_blank"
+           rel="noopener">
+          order pickup
+        </a>
+      </div>
+
+      <div class="order-option">
+        <h2>Delivery</h2>
+        <p>Brought right to your door</p>
+        <p class="time">Delivered in 30-45 minutes</p>
+
+        <a href="https://YOUR_SQUARE_SITE_URL/s/order?location=YOUR_LOCATION_ID&fulfillment=delivery"
+           class="order-button"
+           target="_blank"
+           rel="noopener">
+          order delivery
+        </a>
+      </div>
+
+    </div>
+
+    <!-- =====================================================
+         EMBEDDED MENU (Square Online Widget)
+         ===================================================== -->
+    <div class="menu-section">
+      <h2>Our Menu</h2>
+
+      <div class="square-embed-container">
+        <div class="placeholder">
+          <p>Square Online ordering widget will appear here</p>
+          <code>
+&lt;!-- Square Online Embed Code --&gt;
+&lt;div id="square-online-ordering"
+     data-location-id="YOUR_LOCATION_ID"
+     data-app-id="YOUR_APP_ID"&gt;
+&lt;/div&gt;
+&lt;script src="https://square.site/appointments/buyer/widget/YOUR_WIDGET_ID.js"&gt;&lt;/script&gt;
+          </code>
+        </div>
+
+        <!--
+          ACTUAL EMBED: Replace the placeholder above with your Square embed code.
+
+          To get your embed code:
+          1. Go to Square Dashboard > Online
+          2. Click "Get embed code" or "Share"
+          3. Copy the provided script and div
+          4. Paste here, replacing the placeholder
+
+          Example:
+          <div id="square-online-ordering" data-location-id="XXXXX"></div>
+          <script src="https://square.site/appointments/buyer/widget/XXXXX.js"></script>
+        -->
+
+      </div>
+    </div>
+
+    <!-- =====================================================
+         ALTERNATIVE: Third-party delivery links
+         ===================================================== -->
+    <div class="direct-order-section">
+      <h2>Also available on</h2>
+      <div class="order-links">
+        <a href="https://www.doordash.com/store/YOUR_STORE" class="order-link" target="_blank" rel="noopener">
+          DoorDash
+        </a>
+        <a href="https://www.ubereats.com/store/YOUR_STORE" class="order-link" target="_blank" rel="noopener">
+          Uber Eats
+        </a>
+        <a href="https://www.grubhub.com/restaurant/YOUR_STORE" class="order-link" target="_blank" rel="noopener">
+          Grubhub
+        </a>
+      </div>
+    </div>
+
+    <!-- =====================================================
+         INFO CARDS
+         ===================================================== -->
+    <div class="info-grid">
+
+      <div class="info-card">
+        <h3>Pickup Location</h3>
+        <p>
+          201 Main Street<br />
+          Springfield, USA<br /><br />
+          Look for the red awning. Pickup orders are ready at the counter.
+        </p>
+      </div>
+
+      <div class="info-card">
+        <h3>Delivery Area</h3>
+        <p>
+          We deliver within 5 miles of the restaurant.
+          $3.99 delivery fee, free delivery on orders over $50.
+        </p>
+      </div>
+
+      <div class="info-card">
+        <h3>Large Orders</h3>
+        <p>
+          Ordering for a group? Orders of 10+ should be placed 24 hours in advance.
+          Call us at <a href="tel:816-555-5555" style="color: #c73e3a;">816-555-5555</a>.
+        </p>
+      </div>
+
+    </div>
+
+    <!--
+    =========================================================
+    SQUARE INTEGRATION CHECKLIST:
+    =========================================================
+
+    [ ] 1. Create Square account at https://squareup.com
+    [ ] 2. Set up Square Online from dashboard
+    [ ] 3. Add menu items in Items > Item Library
+    [ ] 4. Configure categories, modifiers, prices
+    [ ] 5. Set business hours in Locations
+    [ ] 6. Enable pickup and/or delivery
+    [ ] 7. Set delivery radius and fees
+    [ ] 8. Configure order timing (prep time)
+    [ ] 9. Connect payment processing
+    [ ] 10. Get embed code and update this page
+    [ ] 11. Test order flow
+
+    SQUARE ONLINE OPTIONS:
+
+    1. DIRECT LINK (simplest)
+       - Link directly to your Square Online ordering page
+       - Customer completes order on Square's hosted site
+       - Least integration work
+
+    2. EMBEDDED WIDGET
+       - Menu displays on your site
+       - Checkout still happens on Square
+       - Better brand integration
+
+    3. SQUARE ORDERS API (advanced)
+       - Full custom integration
+       - Requires backend development
+       - Complete control over UX
+
+    =========================================================
+
+    ALTERNATIVE PLATFORMS TO CONSIDER:
+
+    TOAST (https://pos.toasttab.com)
+    - Purpose-built for restaurants
+    - Excellent kitchen display integration
+    - Higher setup cost
+
+    CHOWNOW (https://www.chownow.com)
+    - Commission-free model
+    - Flat monthly fee
+    - Good for high-volume restaurants
+
+    BENTOBOX (https://getbento.com)
+    - Premium restaurant websites
+    - Built-in ordering
+    - Higher price point
+
+    =========================================================
+    -->
+
+  </body>
+</html>
