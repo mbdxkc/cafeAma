@@ -472,7 +472,7 @@ img{
    ========================================================= */
 .card{
   background: rgba(255,255,255,.05);
-  border: .5px solid rgba(255,255,255,.1);
+  border: .5px solid rgba(255,255,255,.04);
   border-radius: var(--radius-lg);
   padding: var(--space-md);
   transition:
@@ -481,18 +481,18 @@ img{
 }
 
 .card:hover{
-  border-color: rgba(255,255,255,.2);
+  border-color: rgba(255,255,255,.08);
 }
 
 .card-interactive:hover{
   transform: translateY(-2px);
-  border-color: var(--accent-primary);
+  border-color: rgba(255,255,255,.1);
 }
 
 .card-header{
   margin-bottom: var(--space-sm);
   padding-bottom: var(--space-sm);
-  border-bottom: 1px solid rgba(255,255,255,.1);
+  border-bottom: .5px solid rgba(255,255,255,.04);
 }
 
 .card-body{
@@ -502,7 +502,7 @@ img{
 .card-footer{
   margin-top: var(--space-sm);
   padding-top: var(--space-sm);
-  border-top: 1px solid rgba(255,255,255,.1);
+  border-top: .5px solid rgba(255,255,255,.04);
 }
 
 
@@ -1256,7 +1256,7 @@ img{
   gap: var(--space-md);
   padding: var(--space-md);
   margin-bottom: var(--space-lg);
-  border: 0.5px solid var(--accent-secondary);
+  border: .5px solid rgba(255,255,255,.04);
   border-radius: var(--radius-lg);
   background: rgba(255,255,255,.02);
 }
